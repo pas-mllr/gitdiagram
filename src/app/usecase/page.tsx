@@ -3,6 +3,8 @@
 import { useState } from "react";
 import MermaidChart from "~/components/mermaid-diagram";
 import LoadingAnimation from "~/components/loading-animation";
+import UsecaseCard from "~/components/usecase-card";
+import UsecaseHero from "~/components/usecase-hero";
 
 export default function UseCasePage() {
   const [description, setDescription] = useState("");
@@ -27,13 +29,13 @@ export default function UseCasePage() {
           api_key: localStorage.getItem("openai_key") ?? undefined,
         }),
       });
-      const data = await res.json();
+      const data = (await res.json()) as { mermaid?: string; error?: string };
       if (!res.ok || data.error) {
         setError(data.error ?? "Failed to generate diagram");
       } else {
-        setDiagram(data.mermaid);
+        setDiagram(data.mermaid ?? "");
       }
-    } catch (err) {
+    } catch {
       setError("Failed to generate diagram");
     } finally {
       setLoading(false);
@@ -42,35 +44,17 @@ export default function UseCasePage() {
 
   return (
     <div className="flex flex-col items-center p-4">
-      <h1 className="mt-8 text-center text-2xl font-semibold">
-        Use case to diagram.
-      </h1>
-      <form
-        onSubmit={handleSubmit}
-        className="mt-4 flex w-full max-w-xl flex-col gap-4"
-      >
-        <textarea
-          className="min-h-[120px] w-full rounded border p-2"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+      <UsecaseHero />
+      <div className="flex w-full justify-center pt-8">
+        <UsecaseCard
+          description={description}
+          model={model}
+          loading={loading}
+          onDescriptionChange={setDescription}
+          onModelChange={setModel}
+          onSubmit={handleSubmit}
         />
-        <select
-          className="w-32 rounded border p-2"
-          value={model}
-          onChange={(e) => setModel(e.target.value)}
-        >
-          <option value="o1">o1</option>
-          <option value="o3">o3</option>
-          <option value="o4">o4</option>
-        </select>
-        <button
-          type="submit"
-          className="rounded bg-purple-600 px-4 py-2 font-medium text-white"
-          disabled={loading}
-        >
-          Generate
-        </button>
-      </form>
+      </div>
       {loading && (
         <div className="mt-8">
           <LoadingAnimation />
