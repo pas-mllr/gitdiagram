@@ -16,6 +16,8 @@ You can also replace `hub` with `diagram` in any Github URL to access its diagra
 - ⚡ **Fast Generation**: Powered by OpenAI o4-mini for quick and accurate diagrams
 - 🔄 **Customization**: Modify and regenerate diagrams with custom instructions
 - 🌐 **API Access**: Public API available for integration (WIP)
+- 📝 **Use case to diagram**: Describe an enterprise workflow and get a diagram
+  generated with Mermaid and Kroki
 
 ## ⚙️ Tech Stack
 
@@ -100,6 +102,16 @@ pnpm dev
 ```
 
 You can now access the website at `localhost:3000` and edit the rate limits defined in `backend/app/routers/generate.py` in the generate function decorator.
+
+### Generate diagrams from a use case description
+
+You can also create diagrams directly from text:
+
+```bash
+python backend/app/scripts/generate_usecase_diagram.py \
+  --description "A generative AI workflow for enterprise support" \
+  --output ai_use_case.svg
+```
 
 ## Contributing
 

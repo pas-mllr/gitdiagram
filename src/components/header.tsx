@@ -69,6 +69,12 @@ export function Header() {
             <span className="hidden sm:inline">Private Repos</span>
           </span>
           <Link
+            href="/usecase"
+            className="text-sm font-medium text-black transition-transform hover:translate-y-[-2px] hover:text-purple-600"
+          >
+            Use case to diagram
+          </Link>
+          <Link
             href="https://github.com/ahmedkhaleel2004/gitdiagram"
             className="flex items-center gap-1 text-sm font-medium text-black transition-transform hover:translate-y-[-2px] hover:text-purple-600 sm:gap-2"
           >
