@@ -66,7 +66,7 @@ pnpm i
 cp .env.example .env
 ```
 
-Then edit the `.env` file with your Anthropic API key and optional GitHub personal access token.
+Then edit the `.env` file with your OpenAI API key in `OPENAI_API_KEY` (required for generation) and optional GitHub personal access token.
 
 4. Run backend
 
@@ -125,7 +125,7 @@ Shoutout to [Romain Courtois](https://github.com/cyclotruc)'s [Gitingest](https:
 
 I am currently hosting it for free with no rate limits though this is somewhat likely to change in the future.
 
-<!-- If you would like to bypass these, self-hosting instructions are provided. I also plan on adding an input for your own Anthropic API key.
+<!-- If you would like to bypass these, self-hosting instructions are provided. I also plan on adding an input for your own OpenAI API key.
 
 Diagram generation:
 
